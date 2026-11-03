@@ -3,7 +3,7 @@
 // THE COUNTDOWN — VERSION 2.0
 // ============================================================
 
-console.log("The Countdown - Version 2.0");
+console.log("The Countdown - Version 2.1");
 
 // ============================================================
 // CONFIGURATION
@@ -1595,10 +1595,6 @@ function initialiseDashboard() {
     // Set up the management system.
 
     initialiseTabs();
-
-    initialiseWeeklyForm();
-
-    initialiseExtraForm();
 
     initialiseDateLimits();
 
