@@ -528,115 +528,69 @@ function updateClassCounters(now) {
 
     if (!grid) return;
 
-    grid.innerHTML = "";
-
     classes.forEach((classInfo, index) => {
 
-        const remaining = countClassesLeft(
-            classInfo,
-            now
+        const remaining = countClassesLeft(classInfo, now);
+
+        // Find the existing card
+        let card = grid.querySelector(
+            `[data-class-id="${classInfo.id}"]`
         );
 
-        const card = document.createElement("div");
+        // Only create the card if it doesn't already exist
+        if (!card) {
 
-        card.className =
-            `class-card class-color-${index % 8}`;
+            card = document.createElement("div");
 
-        card.dataset.classId = classInfo.id;
+            card.className = `class-card class-color-${index % 8}`;
+            card.dataset.classId = classInfo.id;
 
+            const top = document.createElement("div");
+            top.className = "class-card-top";
 
-        // Top section
+            const icon = document.createElement("div");
+            icon.className = "class-icon";
 
-        const top = document.createElement("div");
+            const iconElement = document.createElement("i");
+            iconElement.className = `fa-solid ${classInfo.icon || "fa-book"}`;
+            icon.appendChild(iconElement);
 
-        top.className = "class-card-top";
+            const category = document.createElement("span");
+            category.className = "class-category";
+            category.textContent = classInfo.category;
 
+            top.append(icon, category);
 
-        const icon = document.createElement("div");
+            const number = document.createElement("div");
+            number.className = "class-number";
 
-        icon.className = "class-icon";
+            const name = document.createElement("h3");
+            name.textContent = classInfo.name;
 
-        const iconElement = document.createElement("i");
+            const description = document.createElement("p");
+            description.textContent = "Classes remaining";
 
-        iconElement.className =
-            `fa-solid ${classInfo.icon || "fa-book"}`;
+            const footer = document.createElement("div");
+            footer.className = "class-card-footer";
 
-        icon.appendChild(iconElement);
+            const indexNumber = document.createElement("span");
+            indexNumber.textContent = pad(index + 1);
 
+            const line = document.createElement("span");
+            line.className = "class-line";
 
-        const category = document.createElement("span");
+            const arrow = document.createElement("i");
+            arrow.className = "fa-solid fa-arrow-right";
 
-        category.className = "class-category";
+            footer.append(indexNumber, line, arrow);
 
-        category.textContent = classInfo.category;
+            card.append(top, number, name, description, footer);
 
+            grid.appendChild(card);
+        }
 
-        top.appendChild(icon);
-        top.appendChild(category);
-
-
-        // Counter
-
-        const number = document.createElement("div");
-
-        number.className = "class-number";
-
-        number.textContent = remaining;
-
-
-        // Name
-
-        const name = document.createElement("h3");
-
-        name.textContent = classInfo.name;
-
-
-        // Description
-
-        const description = document.createElement("p");
-
-        description.textContent = "Classes remaining";
-
-
-        // Footer
-
-        const footer = document.createElement("div");
-
-        footer.className = "class-card-footer";
-
-
-        const indexNumber = document.createElement("span");
-
-        indexNumber.textContent = pad(index + 1);
-
-
-        const line = document.createElement("span");
-
-        line.className = "class-line";
-
-
-        const arrow = document.createElement("i");
-
-        arrow.className = "fa-solid fa-arrow-right";
-
-
-        footer.append(
-            indexNumber,
-            line,
-            arrow
-        );
-
-
-        card.append(
-            top,
-            number,
-            name,
-            description,
-            footer
-        );
-
-
-        grid.appendChild(card);
+        // Update only the number
+        card.querySelector(".class-number").textContent = remaining;
 
     });
 
