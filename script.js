@@ -696,12 +696,12 @@ function updateCountdown(now) {
     } else if (days <= 7) {
 
         message.textContent =
-            "The final week. You're nearly there!";
+            "The final week.";
 
     } else if (days <= 30) {
 
         message.textContent =
-            "The final month. Keep pushing!";
+            "The final month.";
 
     } else {
 
