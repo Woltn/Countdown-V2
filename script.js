@@ -2,7 +2,7 @@
 // THE COUNTDOWN — VERSION 2.1
 // ============================================================
 
-console.log("The Countdown - Version 2.1");
+console.log("The Countdown - Version 2.5");
 
 // ============================================================
 // CONFIGURATION
