@@ -2,7 +2,7 @@
 // THE COUNTDOWN — VERSION 2.1
 // ============================================================
 
-console.log("The Countdown - Version 2.67");
+console.log("The Countdown - Version 2.676");
 
 // ============================================================
 // CONFIGURATION
@@ -173,12 +173,14 @@ const classes = [
 
         weekly: [
             { day: 3, start: "16:30", end: "17:15" }
+            { day: 4, start: "10:45", end: "11:30" }
+            { day: 5, start: "16:30", end: "17:15" }
         ],
 
         extras: [
             {
                 id: "extra-repertoire-1",
-                date: "2026-10-31",
+                date: "2026-11-7",
                 start: "10:15",
                 end: "10:30"
             }
