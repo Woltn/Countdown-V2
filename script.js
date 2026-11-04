@@ -2,7 +2,7 @@
 // THE COUNTDOWN — VERSION 2.1
 // ============================================================
 
-console.log("The Countdown - Version 2.5");
+console.log("The Countdown - Version 2.67");
 
 // ============================================================
 // CONFIGURATION
@@ -135,21 +135,6 @@ const classes = [
 
         extras: []
     },
-
-
-    {
-        id: "character",
-        name: "Character",
-        category: "Dance",
-        icon: "fa-person-walking",
-
-        weekly: [
-            { day: 5, start: "16:30", end: "17:45" }
-        ],
-
-        extras: []
-    },
-
 
     {
         id: "contemporary",
