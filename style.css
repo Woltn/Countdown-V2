@@ -1223,31 +1223,7 @@ body {
 
         box-shadow var(--transition);
 
-    animation: cardAppear 0.5s ease both;
-
 }
-
-
-@keyframes cardAppear {
-
-    from {
-
-        opacity: 0;
-
-        transform: translateY(15px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform: translateY(0);
-
-    }
-
-}
-
 
 .class-card::after {
 
