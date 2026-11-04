@@ -585,22 +585,22 @@ function updateCountdown(now) {
     if (difference === 0) {
 
         message.textContent =
-            "The countdown is complete. You made it!";
+            "The countdown is complete. You Survived";
 
     } else if (days <= 7) {
 
         message.textContent =
-            "The final week. You're nearly there!";
+            "The final week until you escape this place";
 
     } else if (days <= 30) {
 
         message.textContent =
-            "The final month. Keep pushing!";
+            "The final month until you escape this place";
 
     } else {
 
         message.textContent =
-            "The countdown is underway. Make every moment count.";
+            "The countdown is underway";
 
     }
 
