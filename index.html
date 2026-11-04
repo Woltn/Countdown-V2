@@ -6,29 +6,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="theme-color" content="#090b18">
-    <meta name="description" content="Level 4">
+    <title>The Countdown</title>
 
-    <title>The Countdown | 2026</title>
-
-    <!-- Fonts -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <!-- Stylesheet -->
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css">
-
 </head>
+
 
 <body>
 
     <!-- BACKGROUND EFFECTS -->
-
     <div class="background-effects">
 
         <div class="glow glow-one"></div>
@@ -40,13 +36,11 @@
     </div>
 
 
-    <!-- MAIN APPLICATION -->
-
+    <!-- APPLICATION -->
     <div class="app-container">
 
 
         <!-- HEADER -->
-
         <header class="topbar">
 
             <div class="brand">
@@ -56,11 +50,8 @@
                 </div>
 
                 <div class="brand-text">
-
                     <h2>THE COUNTDOWN</h2>
-
-                    <span>Level 4</span>
-
+                    <span>YOUR TERM DASHBOARD</span>
                 </div>
 
             </div>
@@ -69,19 +60,13 @@
             <div class="header-right">
 
                 <div class="live-indicator">
-
                     <span class="live-dot"></span>
-
                     LIVE COUNTDOWN
-
                 </div>
 
                 <div class="current-date">
-
                     <i class="fa-regular fa-calendar"></i>
-
                     <span id="currentDate">Loading date...</span>
-
                 </div>
 
             </div>
@@ -89,486 +74,497 @@
         </header>
 
 
-        <main>
+
+        <!-- HERO SECTION -->
+        <section class="hero-section">
 
 
-            <!-- HERO SECTION -->
+            <div class="hero-content">
 
-            <section class="hero-section">
+                <div class="eyebrow">
+                    <span class="eyebrow-line"></span>
+                    THE FINAL COUNTDOWN
+                    <span class="eyebrow-line"></span>
+                </div>
 
-                <div class="hero-content">
 
-                    <div class="eyebrow">
+                <h1>
+                    Almost <span>There.</span>
+                </h1>
 
-                        <span class="eyebrow-line"></span>
 
-                        DECEMBER 4, 2026
+                <p class="hero-description">
+                    Every day is one step closer to the finish line.
+                </p>
 
-                        <span class="eyebrow-line"></span>
+
+
+                <!-- MAIN COUNTDOWN -->
+                <div class="countdown-container">
+
+
+                    <div class="countdown-unit">
+
+                        <div class="countdown-card">
+                            <span id="days">00</span>
+                        </div>
+
+                        <p>DAYS</p>
 
                     </div>
 
 
-                    <h1>
-
-                        The <span>Countdown.</span>
-
-                    </h1>
+                    <div class="countdown-separator">:</div>
 
 
-                    <p class="hero-description">
+                    <div class="countdown-unit">
 
-                        Every second brings you closer to freedom.
-
-                    </p>
-
-
-                    <!-- MAIN COUNTDOWN -->
-
-                    <div class="countdown-container">
-
-                        <div class="countdown-unit">
-
-                            <div class="countdown-card">
-
-                                <span id="days">00</span>
-
-                            </div>
-
-                            <p>DAYS</p>
-
+                        <div class="countdown-card">
+                            <span id="hours">00</span>
                         </div>
 
-
-                        <div class="countdown-separator">:</div>
-
-
-                        <div class="countdown-unit">
-
-                            <div class="countdown-card">
-
-                                <span id="hours">00</span>
-
-                            </div>
-
-                            <p>HOURS</p>
-
-                        </div>
-
-
-                        <div class="countdown-separator">:</div>
-
-
-                        <div class="countdown-unit">
-
-                            <div class="countdown-card">
-
-                                <span id="minutes">00</span>
-
-                            </div>
-
-                            <p>MINUTES</p>
-
-                        </div>
-
-
-                        <div class="countdown-separator">:</div>
-
-
-                        <div class="countdown-unit">
-
-                            <div class="countdown-card">
-
-                                <span id="seconds">00</span>
-
-                            </div>
-
-                            <p>SECONDS</p>
-
-                        </div>
+                        <p>HOURS</p>
 
                     </div>
 
 
-                    <div class="countdown-status">
+                    <div class="countdown-separator">:</div>
 
-                        <span class="status-icon">
 
-                            <i class="fa-solid fa-bolt"></i>
+                    <div class="countdown-unit">
 
-                        </span>
+                        <div class="countdown-card">
+                            <span id="minutes">00</span>
+                        </div>
 
-                        <span id="countdownMessage">
-
-                            The countdown is underway.
-
-                        </span>
+                        <p>MINUTES</p>
 
                     </div>
+
+
+                    <div class="countdown-separator">:</div>
+
+
+                    <div class="countdown-unit">
+
+                        <div class="countdown-card">
+                            <span id="seconds">00</span>
+                        </div>
+
+                        <p>SECONDS</p>
+
+                    </div>
+
 
                 </div>
 
 
-                <!-- DATE CARD -->
 
-                <div class="hero-side">
+                <!-- COUNTDOWN STATUS -->
+                <div class="countdown-status">
 
-                    <div class="date-card">
+                    <i class="fa-solid fa-bolt status-icon"></i>
 
-                        <div class="date-card-top">
-
-                            <span>THE BIG DAY</span>
-
-                            <i class="fa-regular fa-calendar-check"></i>
-
-                        </div>
-
-
-                        <div class="date-card-day">
-
-                            04
-
-                        </div>
-
-
-                        <div class="date-card-month">
-
-                            DECEMBER
-
-                        </div>
-
-
-                        <div class="date-card-divider"></div>
-
-
-                        <div class="date-card-bottom">
-
-                            <div>
-
-                                <span>YEAR</span>
-
-                                <strong>2026</strong>
-
-                            </div>
-
-
-                            <div>
-
-                                <span>TIME</span>
-
-                                <strong>5:45 PM</strong>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="mini-stat-card">
-
-                        <div class="mini-stat-icon">
-
-                            <i class="fa-solid fa-hourglass-start"></i>
-
-                        </div>
-
-                        <div>
-
-                            <span>TIME REMAINING</span>
-
-                            <strong id="totalDaysRemaining">-- DAYS</strong>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- TERM PROGRESS -->
-
-            <section class="dashboard-section">
-
-                <div class="section-heading">
-
-                    <div>
-
-                        <span class="section-label">YOUR PROGRESS</span>
-
-                        <h2>Term Progress</h2>
-
-                    </div>
-
-
-                    <div class="section-icon">
-
-                        <i class="fa-solid fa-chart-line"></i>
-
-                    </div>
+                    <span id="countdownMessage">
+                        Loading countdown...
+                    </span>
 
                 </div>
 
 
-                <div class="progress-panel">
+            </div>
 
-                    <div class="progress-information">
 
-                        <div>
 
-                            <span class="progress-description">
+            <!-- DATE CARD -->
+            <div class="hero-side">
 
-                                You've made it this far!
 
-                            </span>
+                <div class="date-card">
 
-                            <p>October 5 — December 4</p>
+                    <div class="date-card-top">
 
-                        </div>
-
-
-                        <div class="progress-percentage">
-
-                            <span id="termProgress">0.000%</span>
-
-                            <small>COMPLETE</small>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="progress-track">
-
-                        <div
-                            class="progress-fill"
-                            id="termProgressBar"
-                        >
-
-                            <div class="progress-glow"></div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="progress-footer">
-
-                        <span>OCT 05</span>
-
-                        <span id="progressRemaining">60 DAYS REMAINING</span>
-
-                        <span>DEC 04</span>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- CLASS COUNTERS -->
-
-            <section class="dashboard-section" id="classesSection">
-
-                <div class="section-heading">
-
-                    <div>
-
-                        <span class="section-label">KEEP TRACK</span>
-
-                        <h2>Classes Remaining</h2>
-
-                        <p class="section-subtitle">
-
-                            Every class completed gets you closer.
-
-                        </p>
-
-                    </div>
-
-
-                    <div class="section-icon">
-
-                        <i class="fa-solid fa-graduation-cap"></i>
-
-                    </div>
-
-                </div>
-
-
-                <!-- JavaScript generates class cards here -->
-
-                <div class="class-grid" id="classGrid">
-
-                </div>
-
-            </section>
-
-
-
-            <!-- UPCOMING CLASS -->
-
-            <section class="dashboard-section">
-
-                <div class="section-heading">
-
-                    <div>
-
-                        <span class="section-label">WHAT'S NEXT?</span>
-
-                        <h2>Upcoming Class</h2>
-
-                    </div>
-
-
-                    <div class="section-icon">
-
-                        <i class="fa-regular fa-clock"></i>
-
-                    </div>
-
-                </div>
-
-
-                <div class="next-class-panel">
-
-                    <div class="next-class-icon">
-
-                        <i class="fa-solid fa-calendar-day"></i>
-
-                    </div>
-
-
-                    <div class="next-class-information">
-
-                        <span>NEXT UP</span>
-
-                        <h3 id="nextClassName">Loading...</h3>
-
-                        <p id="nextClassDate">Finding your next class...</p>
-
-                    </div>
-
-
-                    <div class="next-class-countdown">
-
-                        <span>STARTS IN</span>
-
-                        <strong id="nextClassTime">--:--:--</strong>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-
-            <!-- COUNTDOWN MILESTONES -->
-
-            <section class="dashboard-section">
-
-                <div class="section-heading">
-
-                    <div>
-
-                        <span class="section-label">THE ROAD AHEAD</span>
-
-                        <h2>Countdown Milestones</h2>
-
-                    </div>
-
-
-                    <div class="section-icon">
+                        <span>THE BIG DAY</span>
 
                         <i class="fa-solid fa-flag-checkered"></i>
 
                     </div>
 
+
+                    <div class="date-card-day">4</div>
+
+                    <div class="date-card-month">DECEMBER</div>
+
+
+                    <div class="date-card-divider"></div>
+
+
+                    <div class="date-card-bottom">
+
+                        <div>
+                            <span>YEAR</span>
+                            <strong>2026</strong>
+                        </div>
+
+                        <div>
+                            <span>TIME</span>
+                            <strong>5:45 PM</strong>
+                        </div>
+
+                    </div>
+
                 </div>
 
 
-                <div class="milestone-grid">
 
+                <!-- DAYS REMAINING -->
+                <div class="mini-stat-card">
 
-                    <div class="milestone-card">
-
-                        <div class="milestone-icon">
-
-                            <i class="fa-solid fa-calendar-week"></i>
-
-                        </div>
-
-                        <div>
-
-                            <span>30 DAYS LEFT</span>
-
-                            <h3 id="milestone30">Coming soon</h3>
-
-                            <p>One month to go.</p>
-
-                        </div>
-
+                    <div class="mini-stat-icon">
+                        <i class="fa-solid fa-calendar-days"></i>
                     </div>
 
-
-                    <div class="milestone-card">
-
-                        <div class="milestone-icon">
-
-                            <i class="fa-solid fa-fire"></i>
-
-                        </div>
-
-                        <div>
-
-                            <span>14 DAYS LEFT</span>
-
-                            <h3 id="milestone14">Coming soon</h3>
-
-                            <p>Two weeks remaining.</p>
-
-                        </div>
-
+                    <div>
+                        <span>DAYS REMAINING</span>
+                        <strong id="totalDaysRemaining">--</strong>
                     </div>
-
-
-                    <div class="milestone-card">
-
-                        <div class="milestone-icon">
-
-                            <i class="fa-solid fa-bullseye"></i>
-
-                        </div>
-
-                        <div>
-
-                            <span>7 DAYS LEFT</span>
-
-                            <h3 id="milestone7">Coming soon</h3>
-
-                            <p>The final week.</p>
-
-                        </div>
-
-                    </div>
-
 
                 </div>
 
-            </section>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- TERM PROGRESS -->
+        <section class="dashboard-section">
+
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-label">THE BIG PICTURE</span>
+
+                    <h2>Term Progress</h2>
+
+                    <p class="section-subtitle">
+                        How far through the final term?
+                    </p>
+                </div>
+
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+            </div>
+
+
+
+            <div class="progress-panel">
+
+
+                <div class="progress-information">
+
+                    <div>
+
+                        <div class="progress-description">
+                            Final Term Progress
+                        </div>
+
+                        <p>
+                            October 5 – December 4, 2026
+                        </p>
+
+                    </div>
+
+
+                    <div class="progress-percentage">
+
+                        <span id="termProgress">0.00%</span>
+
+                        <small>COMPLETED</small>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="progress-track">
+
+                    <div class="progress-fill" id="termProgressBar">
+
+                        <div class="progress-glow"></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="progress-footer">
+
+                    <span>OCTOBER 5</span>
+
+                    <span>THE FINAL TERM</span>
+
+                    <span id="progressRemaining">
+                        -- DAYS REMAINING
+                    </span>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CLASS COUNTERS -->
+        <section class="dashboard-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">KEEP GOING</span>
+
+                    <h2>Classes Remaining</h2>
+
+                    <p class="section-subtitle">
+                        Every class completed brings you closer.
+                    </p>
+
+                </div>
+
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+
+            </div>
+
+
+
+            <!-- JavaScript creates the class cards here -->
+            <div class="class-grid" id="classGrid">
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- UPCOMING CLASS -->
+        <section class="dashboard-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">WHAT'S NEXT?</span>
+
+                    <h2>Upcoming Class</h2>
+
+                </div>
+
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-clock"></i>
+                </div>
+
+            </div>
+
+
+
+            <div class="next-class-panel">
+
+
+                <div class="next-class-icon">
+                    <i class="fa-solid fa-calendar-check"></i>
+                </div>
+
+
+
+                <div class="next-class-information">
+
+                    <span>NEXT UP</span>
+
+                    <h3 id="nextClassName">
+                        Loading...
+                    </h3>
+
+                    <p id="nextClassDate">
+                        Finding your next class...
+                    </p>
+
+                </div>
+
+
+
+                <div class="next-class-countdown">
+
+                    <span>CLASS TIME</span>
+
+                    <strong id="nextClassTime">--</strong>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- COUNTDOWN MILESTONES -->
+        <section class="dashboard-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">THE FINISH LINE</span>
+
+                    <h2>Countdown Milestones</h2>
+
+                    <p class="section-subtitle">
+                        Important moments along the way.
+                    </p>
+
+                </div>
+
+
+                <div class="section-icon">
+                    <i class="fa-solid fa-flag"></i>
+                </div>
+
+            </div>
+
+
+
+            <div class="milestone-grid">
+
+
+                <!-- 30 DAYS -->
+                <div class="milestone-card">
+
+                    <div class="milestone-icon">
+                        <i class="fa-solid fa-calendar"></i>
+                    </div>
+
+
+                    <div>
+
+                        <span>30 DAYS LEFT</span>
+
+                        <h3 id="milestone30">Coming soon</h3>
+
+                        <p>The final month.</p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 14 DAYS -->
+                <div class="milestone-card">
+
+                    <div class="milestone-icon">
+                        <i class="fa-solid fa-hourglass-half"></i>
+                    </div>
+
+
+                    <div>
+
+                        <span>14 DAYS LEFT</span>
+
+                        <h3 id="milestone14">Coming soon</h3>
+
+                        <p>Just two weeks to go.</p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- 7 DAYS -->
+                <div class="milestone-card">
+
+                    <div class="milestone-icon">
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+
+
+                    <div>
+
+                        <span>7 DAYS LEFT</span>
+
+                        <h3 id="milestone7">Coming soon</h3>
+
+                        <p>The final week.</p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- FOOTER -->
+        <footer class="footer">
+
+
+            <div class="footer-brand">
+
+                <i class="fa-solid fa-hourglass-half"></i>
+
+                THE COUNTDOWN
+
+            </div>
+
+
+
+            <p>
+                Made for the final stretch.
+                <span>VERSION 2.1</span>
+            </p>
+
+
+
+            <div class="footer-status">
+
+                <span class="live-dot"></span>
+
+                SYSTEM ONLINE
+
+            </div>
+
+
+        </footer>
+
+
+    </div>
+
 
 
     <!-- JAVASCRIPT -->
-
     <script src="script.js"></script>
 
 </body>
 
 </html>
-
