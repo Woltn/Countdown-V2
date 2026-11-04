@@ -8,7 +8,7 @@ console.log("The Countdown - Version 2.1");
 // CONFIGURATION
 // ============================================================
 
-const targetDate = new Date(2026, 11, 4, 17, 45, 0);
+const targetDate = new Date(2026, 11, 4, 17, 15, 0);
 
 const firstPeriod = new Date(2026, 8, 8, 0, 0, 0);
 
