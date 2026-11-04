@@ -1,57 +1,63 @@
 
 // ============================================================
-// THE COUNTDOWN DASHBOARD
-// VERSION 2.1
+// THE COUNTDOWN — VERSION 2.0
 // ============================================================
 
+console.log("The Countdown - Version 2.0");
 
 // ============================================================
 // CONFIGURATION
 // ============================================================
 
-const countdownTarget = new Date(2026, 11, 4, 17, 45, 0);
+const targetDate = new Date(2026, 11, 4, 17, 45, 0);
 
-const scheduleStart = new Date(2026, 8, 8, 0, 0, 0);
-const scheduleEnd = new Date(2026, 11, 4, 23, 59, 59);
+const firstPeriod = new Date(2026, 8, 8, 0, 0, 0);
+
+const secondPeriod = new Date(2026, 9, 5, 0, 0, 0);
 
 const termStart = new Date(2026, 9, 5, 0, 0, 0);
-const termEnd = countdownTarget;
+
+const termEnd = targetDate;
+
+const STORAGE_KEY = "countdownDashboard_v2";
+
+const DAY_NAMES = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+];
 
 
 // ============================================================
-// CLASS CONFIGURATION
-// ============================================================
-//
-// To ADD a class:
-// Copy one of the class objects below and change its details.
-//
-// To REMOVE a class:
-// Delete its entire object from this array.
-//
-// Days:
-// 0 = Sunday
-// 1 = Monday
-// 2 = Tuesday
-// 3 = Wednesday
-// 4 = Thursday
-// 5 = Friday
-// 6 = Saturday
-//
-// Times use 24-hour format.
-//
+// CLASS DEFINITIONS
 // ============================================================
 
-const classes = [
+// All your original classes and schedules are preserved.
+// You can now add and remove classes directly on the website.
+
+const defaultClasses = [
 
     {
         id: "ballet",
         name: "Ballet",
-        icon: "fa-person-running",
-        days: [1, 2, 3, 4, 5],
-        start: "14:45",
-        end: "16:15",
+        category: "Dance",
+        icon: "fa-shoe-prints",
+
+        weekly: [
+            { day: 1, start: "14:45", end: "16:15" },
+            { day: 2, start: "08:30", end: "09:45" },
+            { day: 3, start: "14:45", end: "16:15" },
+            { day: 4, start: "08:30", end: "10:00" },
+            { day: 5, start: "13:45", end: "15:15" }
+        ],
+
         extras: [
             {
+                id: "extra-ballet-1",
                 date: "2026-11-07",
                 start: "09:00",
                 end: "09:45"
@@ -59,95 +65,134 @@ const classes = [
         ]
     },
 
+
     {
         id: "vcass",
         name: "VCASS",
+        category: "School",
         icon: "fa-school",
-        days: [1, 2, 3, 4, 5],
-        sessions: [
+
+        weekly: [
+            // Monday
             { day: 1, start: "08:30", end: "09:15" },
             { day: 1, start: "09:15", end: "10:00" },
             { day: 1, start: "10:20", end: "11:05" },
             { day: 1, start: "11:50", end: "12:35" },
 
+            // Tuesday
             { day: 2, start: "12:35", end: "13:20" },
             { day: 2, start: "13:20", end: "14:05" },
             { day: 2, start: "14:05", end: "14:50" },
             { day: 2, start: "14:50", end: "15:35" },
 
+            // Wednesday
             { day: 3, start: "08:30", end: "09:15" },
             { day: 3, start: "09:15", end: "10:00" },
             { day: 3, start: "10:20", end: "11:05" },
             { day: 3, start: "11:50", end: "12:35" },
 
+            // Thursday
             { day: 4, start: "13:20", end: "14:05" },
             { day: 4, start: "14:05", end: "14:50" },
             { day: 4, start: "14:50", end: "15:35" },
 
+            // Friday
             { day: 5, start: "08:30", end: "09:15" },
             { day: 5, start: "09:15", end: "10:00" },
             { day: 5, start: "10:20", end: "11:05" },
             { day: 5, start: "11:50", end: "12:35" }
-        ]
+        ],
+
+        extras: []
     },
+
 
     {
         id: "conditioning",
         name: "Conditioning",
+        category: "Fitness",
         icon: "fa-dumbbell",
-        sessions: [
+
+        weekly: [
             { day: 1, start: "14:05", end: "14:35" },
             { day: 3, start: "14:05", end: "14:35" }
-        ]
+        ],
+
+        extras: []
     },
+
 
     {
         id: "gym",
         name: "Gym",
-        icon: "fa-weight-hanging",
-        sessions: [
+        category: "Fitness",
+        icon: "fa-heart-pulse",
+
+        weekly: [
             { day: 2, start: "16:45", end: "17:15" },
             { day: 4, start: "12:00", end: "12:30" }
-        ]
+        ],
+
+        extras: []
     },
+
 
     {
         id: "character",
         name: "Character",
-        icon: "fa-masks-theater",
-        days: [5],
-        start: "16:30",
-        end: "17:45"
+        category: "Dance",
+        icon: "fa-person-walking",
+
+        weekly: [
+            { day: 5, start: "16:30", end: "17:45" }
+        ],
+
+        extras: []
     },
+
 
     {
         id: "contemporary",
         name: "Contemporary",
+        category: "Dance",
         icon: "fa-music",
-        days: [2],
-        start: "10:00",
-        end: "11:15"
+
+        weekly: [
+            { day: 2, start: "10:00", end: "11:15" }
+        ],
+
+        extras: []
     },
+
 
     {
         id: "classical-studies",
         name: "Classical Studies",
+        category: "Studies",
         icon: "fa-book-open",
-        sessions: [
+
+        weekly: [
             { day: 1, start: "16:30", end: "17:15" },
             { day: 5, start: "15:30", end: "16:15" }
-        ]
+        ],
+
+        extras: []
     },
+
 
     {
         id: "repertoire",
         name: "Repertoire",
+        category: "Dance",
         icon: "fa-star",
-        days: [3],
-        start: "16:30",
-        end: "17:15",
+
+        weekly: [
+            { day: 3, start: "16:30", end: "17:15" }
+        ],
+
         extras: [
             {
+                id: "extra-repertoire-1",
                 date: "2026-10-31",
                 start: "10:15",
                 end: "10:30"
@@ -159,14 +204,76 @@ const classes = [
 
 
 // ============================================================
-// GLOBAL DATA
+// LOAD AND SAVE CLASSES
 // ============================================================
 
-let classSessions = [];
+function cloneClasses(classes) {
+    return JSON.parse(JSON.stringify(classes));
+}
+
+function loadClasses() {
+
+    try {
+
+        const saved = localStorage.getItem(STORAGE_KEY);
+
+        if (saved) {
+
+            const parsed = JSON.parse(saved);
+
+            if (
+                Array.isArray(parsed) &&
+                parsed.every(item =>
+                    item &&
+                    typeof item.id === "string" &&
+                    typeof item.name === "string" &&
+                    Array.isArray(item.weekly) &&
+                    Array.isArray(item.extras)
+                )
+            ) {
+                return parsed;
+            }
+
+        }
+
+    } catch (error) {
+
+        console.error("Could not load saved classes:", error);
+
+    }
+
+    return cloneClasses(defaultClasses);
+
+}
+
+let classes = loadClasses();
+
+
+function saveClasses() {
+
+    try {
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(classes)
+        );
+
+    } catch (error) {
+
+        console.error("Could not save classes:", error);
+
+        showMessage(
+            "Unable to save changes. Check your browser storage.",
+            "error"
+        );
+
+    }
+
+}
 
 
 // ============================================================
-// HELPER FUNCTIONS
+// GENERAL HELPERS
 // ============================================================
 
 function getElement(id) {
@@ -179,136 +286,243 @@ function pad(number) {
 }
 
 
+function formatTime(time) {
+
+    const [hours, minutes] = time.split(":").map(Number);
+
+    const date = new Date(2026, 0, 1, hours, minutes);
+
+    return date.toLocaleTimeString("en-AU", {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true
+    });
+
+}
+
+
 function formatDate(date) {
+
     return date.toLocaleDateString("en-AU", {
         weekday: "long",
         day: "numeric",
         month: "long",
         year: "numeric"
     });
+
 }
 
 
-function formatTime(date) {
-    return date.toLocaleTimeString("en-AU", {
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true
-    });
+function createDate(date, time) {
+
+    const [hours, minutes] = time.split(":").map(Number);
+
+    return new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        hours,
+        minutes,
+        0
+    );
+
 }
 
 
-function makeDate(dateString, timeString) {
-    const [year, month, day] = dateString.split("-").map(Number);
-    const [hours, minutes] = timeString.split(":").map(Number);
+function formatDuration(milliseconds) {
 
-    return new Date(year, month - 1, day, hours, minutes, 0);
+    const totalSeconds = Math.max(
+        0,
+        Math.floor(milliseconds / 1000)
+    );
+
+    const days = Math.floor(totalSeconds / 86400);
+
+    const hours = Math.floor(totalSeconds / 3600) % 24;
+
+    const minutes = Math.floor(totalSeconds / 60) % 60;
+
+    const seconds = totalSeconds % 60;
+
+    if (days > 0) {
+
+        return `${days}d ${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+
+    }
+
+    return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+
+}
+
+
+function createID() {
+
+    return "custom-" +
+        Date.now().toString(36) +
+        "-" +
+        Math.random().toString(36).slice(2, 8);
+
 }
 
 
 // ============================================================
-// GENERATE CLASS SESSIONS
+// CLASS PERIOD CHECKING
 // ============================================================
 
-function generateClassSessions() {
+function isPeriodActive(date, period) {
+
+    const inFirstPeriod =
+        date >= firstPeriod &&
+        date < secondPeriod;
+
+    const inSecondPeriod =
+        date >= secondPeriod &&
+        date <= targetDate;
+
+    if (period === "first") {
+        return inFirstPeriod;
+    }
+
+    if (period === "second") {
+        return inSecondPeriod;
+    }
+
+    return inFirstPeriod || inSecondPeriod;
+
+}
+
+
+// ============================================================
+// GENERATE ALL CLASS SESSIONS
+// ============================================================
+
+function getAllClasses(classInfo) {
 
     const sessions = [];
 
-    classes.forEach(classInfo => {
+    // ========================================
+    // RECURRING WEEKLY CLASSES
+    // ========================================
 
-        function addSession(date, start, end) {
+    const currentDate = new Date(firstPeriod);
 
-            const startDate = makeDate(date, start);
-            const endDate = makeDate(date, end);
+    while (currentDate <= targetDate) {
 
-            if (
-                startDate >= scheduleStart &&
-                endDate <= scheduleEnd
-            ) {
-                sessions.push({
-                    id: classInfo.id,
-                    name: classInfo.name,
-                    icon: classInfo.icon,
-                    start: startDate,
-                    end: endDate
-                });
-            }
-        }
+        if (isPeriodActive(currentDate, "all")) {
 
+            const weekday = currentDate.getDay();
 
-        // Regular weekly sessions
+            for (const session of classInfo.weekly) {
 
-        const currentDate = new Date(scheduleStart);
+                if (session.day !== weekday) {
+                    continue;
+                }
 
-        while (currentDate <= scheduleEnd) {
+                if (!isPeriodActive(currentDate, session.period || "all")) {
+                    continue;
+                }
 
-            const day = currentDate.getDay();
-
-            if (classInfo.sessions) {
-
-                classInfo.sessions.forEach(session => {
-
-                    if (session.day === day) {
-
-                        const dateString =
-                            `${currentDate.getFullYear()}-${pad(currentDate.getMonth() + 1)}-${pad(currentDate.getDate())}`;
-
-                        addSession(
-                            dateString,
-                            session.start,
-                            session.end
-                        );
-                    }
-
-                });
-
-            } else if (classInfo.days && classInfo.days.includes(day)) {
-
-                const dateString =
-                    `${currentDate.getFullYear()}-${pad(currentDate.getMonth() + 1)}-${pad(currentDate.getDate())}`;
-
-                addSession(
-                    dateString,
-                    classInfo.start,
-                    classInfo.end
+                const start = createDate(
+                    currentDate,
+                    session.start
                 );
+
+                const end = createDate(
+                    currentDate,
+                    session.end
+                );
+
+                if (end <= targetDate) {
+
+                    sessions.push({
+                        start,
+                        end,
+                        type: "weekly"
+                    });
+
+                }
 
             }
 
-            currentDate.setDate(currentDate.getDate() + 1);
         }
 
+        currentDate.setDate(
+            currentDate.getDate() + 1
+        );
 
-        // Additional one-off sessions
+    }
 
-        if (classInfo.extras) {
 
-            classInfo.extras.forEach(extra => {
+    // ========================================
+    // ONE-TIME CLASSES
+    // ========================================
 
-                addSession(
-                    extra.date,
-                    extra.start,
-                    extra.end
-                );
+    for (const extra of classInfo.extras) {
 
+        const [year, month, day] =
+            extra.date.split("-").map(Number);
+
+        const start = new Date(
+            year,
+            month - 1,
+            day,
+            ...extra.start.split(":").map(Number),
+            0
+        );
+
+        const end = new Date(
+            year,
+            month - 1,
+            day,
+            ...extra.end.split(":").map(Number),
+            0
+        );
+
+        if (
+            start >= firstPeriod &&
+            end <= targetDate &&
+            end > start
+        ) {
+
+            sessions.push({
+                start,
+                end,
+                type: "extra",
+                extraId: extra.id
             });
 
         }
 
-    });
+    }
 
 
-    sessions.sort((a, b) => a.start - b.start);
+    // Put everything in chronological order.
+
+    sessions.sort(
+        (a, b) => a.start - b.start
+    );
 
     return sessions;
+
 }
 
 
 // ============================================================
-// CREATE CLASS CARDS
+// CLASS COUNTERS
 // ============================================================
 
-function createClassCards() {
+function countClassesLeft(classInfo, now) {
+
+    const sessions = getAllClasses(classInfo);
+
+    return sessions.filter(session =>
+        session.end > now
+    ).length;
+
+}
+
+
+function updateClassCounters(now) {
 
     const grid = getElement("classGrid");
 
@@ -316,35 +530,110 @@ function createClassCards() {
 
     grid.innerHTML = "";
 
-
     classes.forEach((classInfo, index) => {
+
+        const remaining = countClassesLeft(
+            classInfo,
+            now
+        );
 
         const card = document.createElement("div");
 
-        card.className = `class-card class-color-${index % 8}`;
+        card.className =
+            `class-card class-color-${index % 8}`;
 
         card.dataset.classId = classInfo.id;
 
 
-        card.innerHTML = `
+        // Top section
 
-            <div class="class-card-top">
+        const top = document.createElement("div");
 
-                <div class="class-icon">
-                    <i class="fa-solid ${classInfo.icon}"></i>
-                </div>
+        top.className = "class-card-top";
 
-            </div>
 
-            <h3>${classInfo.name}</h3>
+        const icon = document.createElement("div");
 
-            <div class="class-number" id="class-number-${classInfo.id}">
-                --
-            </div>
+        icon.className = "class-icon";
 
-            <p>CLASSES REMAINING</p>
+        const iconElement = document.createElement("i");
 
-        `;
+        iconElement.className =
+            `fa-solid ${classInfo.icon || "fa-book"}`;
+
+        icon.appendChild(iconElement);
+
+
+        const category = document.createElement("span");
+
+        category.className = "class-category";
+
+        category.textContent = classInfo.category;
+
+
+        top.appendChild(icon);
+        top.appendChild(category);
+
+
+        // Counter
+
+        const number = document.createElement("div");
+
+        number.className = "class-number";
+
+        number.textContent = remaining;
+
+
+        // Name
+
+        const name = document.createElement("h3");
+
+        name.textContent = classInfo.name;
+
+
+        // Description
+
+        const description = document.createElement("p");
+
+        description.textContent = "Classes remaining";
+
+
+        // Footer
+
+        const footer = document.createElement("div");
+
+        footer.className = "class-card-footer";
+
+
+        const indexNumber = document.createElement("span");
+
+        indexNumber.textContent = pad(index + 1);
+
+
+        const line = document.createElement("span");
+
+        line.className = "class-line";
+
+
+        const arrow = document.createElement("i");
+
+        arrow.className = "fa-solid fa-arrow-right";
+
+
+        footer.append(
+            indexNumber,
+            line,
+            arrow
+        );
+
+
+        card.append(
+            top,
+            number,
+            name,
+            description,
+            footer
+        );
 
 
         grid.appendChild(card);
@@ -355,82 +644,71 @@ function createClassCards() {
 
 
 // ============================================================
-// UPDATE CLASS COUNTERS
-// ============================================================
-
-function updateClassCounters(now) {
-
-    classes.forEach(classInfo => {
-
-        const numberElement = getElement(
-            `class-number-${classInfo.id}`
-        );
-
-        if (!numberElement) return;
-
-
-        const remaining = classSessions.filter(session => {
-
-            return (
-                session.id === classInfo.id &&
-                session.end > now
-            );
-
-        }).length;
-
-
-        numberElement.textContent = remaining;
-
-    });
-
-}
-
-
-// ============================================================
-// COUNTDOWN
+// MAIN COUNTDOWN
 // ============================================================
 
 function updateCountdown(now) {
 
-    const difference = countdownTarget - now;
+    const difference = Math.max(
+        0,
+        targetDate - now
+    );
 
-    if (difference <= 0) {
+    const totalSeconds = Math.floor(
+        difference / 1000
+    );
 
-        getElement("days").textContent = "00";
-        getElement("hours").textContent = "00";
-        getElement("minutes").textContent = "00";
-        getElement("seconds").textContent = "00";
+    const days = Math.floor(
+        totalSeconds / 86400
+    );
 
-        getElement("countdownMessage").textContent =
-            "You've made it!";
+    const hours = Math.floor(
+        totalSeconds / 3600
+    ) % 24;
 
-        getElement("totalDaysRemaining").textContent = "0";
-
-        return;
-    }
-
-
-    const totalSeconds = Math.floor(difference / 1000);
-
-    const days = Math.floor(totalSeconds / 86400);
-
-    const hours = Math.floor((totalSeconds % 86400) / 3600);
-
-    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const minutes = Math.floor(
+        totalSeconds / 60
+    ) % 60;
 
     const seconds = totalSeconds % 60;
 
 
-    getElement("days").textContent = pad(days);
+    getElement("days").textContent = days;
+
     getElement("hours").textContent = pad(hours);
+
     getElement("minutes").textContent = pad(minutes);
+
     getElement("seconds").textContent = pad(seconds);
 
 
-    getElement("countdownMessage").textContent =
-        "The finish line is getting closer!";
+    getElement("totalDaysRemaining").textContent =
+        `${days} DAYS`;
 
-    getElement("totalDaysRemaining").textContent = days;
+
+    const message = getElement("countdownMessage");
+
+    if (difference === 0) {
+
+        message.textContent =
+            "The countdown is complete. You made it!";
+
+    } else if (days <= 7) {
+
+        message.textContent =
+            "The final week. You're nearly there!";
+
+    } else if (days <= 30) {
+
+        message.textContent =
+            "The final month. Keep pushing!";
+
+    } else {
+
+        message.textContent =
+            "The countdown is underway. Make every moment count.";
+
+    }
 
 }
 
@@ -441,11 +719,13 @@ function updateCountdown(now) {
 
 function updateCurrentDate(now) {
 
-    const element = getElement("currentDate");
-
-    if (!element) return;
-
-    element.textContent = formatDate(now);
+    getElement("currentDate").textContent =
+        now.toLocaleDateString("en-AU", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric"
+        });
 
 }
 
@@ -460,13 +740,20 @@ function updateTermProgress(now) {
 
     const elapsed = now - termStart;
 
-    let percentage = (elapsed / totalDuration) * 100;
+    let progress = (
+        elapsed / totalDuration
+    ) * 100;
 
-    percentage = Math.max(0, Math.min(100, percentage));
+    progress = Math.max(
+        0,
+        Math.min(100, progress)
+    );
+
+    const percentage = progress.toFixed(3);
 
 
     getElement("termProgress").textContent =
-        `${percentage.toFixed(2)}%`;
+        `${percentage}%`;
 
 
     getElement("termProgressBar").style.width =
@@ -486,49 +773,101 @@ function updateTermProgress(now) {
 
 
 // ============================================================
-// NEXT CLASS
+// UPCOMING CLASS
 // ============================================================
 
 function updateNextClass(now) {
 
-    const nextSession = classSessions.find(session => {
-        return session.end > now;
+    const allSessions = [];
+
+    classes.forEach(classInfo => {
+
+        getAllClasses(classInfo).forEach(session => {
+
+            allSessions.push({
+                ...session,
+                className: classInfo.name
+            });
+
+        });
+
     });
 
 
-    if (!nextSession) {
+    allSessions.sort(
+        (a, b) => a.start - b.start
+    );
+
+
+    // Check whether a class is currently happening.
+
+    const activeClass = allSessions.find(session =>
+        session.start <= now &&
+        session.end > now
+    );
+
+
+    // Otherwise find the next upcoming class.
+
+    const nextClass = activeClass ||
+        allSessions.find(session =>
+            session.start > now
+        );
+
+
+    if (!nextClass) {
 
         getElement("nextClassName").textContent =
             "No more classes!";
 
         getElement("nextClassDate").textContent =
-            "You've reached the end.";
+            "You've completed your scheduled classes.";
 
-        getElement("nextClassTime").textContent = "--";
+        getElement("nextClassTime").textContent =
+            "00:00:00";
+
+        document.querySelector(
+            ".next-class-countdown span"
+        ).textContent = "COMPLETE";
 
         return;
+
     }
 
 
+    const isActive = Boolean(activeClass);
+
     getElement("nextClassName").textContent =
-        nextSession.name;
+        nextClass.className;
 
 
-    if (now >= nextSession.start) {
+    if (isActive) {
 
         getElement("nextClassDate").textContent =
-            "Currently in progress";
+            `Currently in progress · Ends at ${formatTime(
+                nextClass.end.toTimeString().slice(0, 5)
+            )}`;
+
+        document.querySelector(
+            ".next-class-countdown span"
+        ).textContent = "ENDS IN";
 
         getElement("nextClassTime").textContent =
-            `Until ${formatTime(nextSession.end)}`;
+            formatDuration(nextClass.end - now);
 
     } else {
 
         getElement("nextClassDate").textContent =
-            formatDate(nextSession.start);
+            `${formatDate(nextClass.start)} · ${formatTime(
+                nextClass.start.toTimeString().slice(0, 5)
+            )}`;
+
+        document.querySelector(
+            ".next-class-countdown span"
+        ).textContent = "STARTS IN";
 
         getElement("nextClassTime").textContent =
-            formatTime(nextSession.start);
+            formatDuration(nextClass.start - now);
 
     }
 
@@ -536,7 +875,7 @@ function updateNextClass(now) {
 
 
 // ============================================================
-// MILESTONES
+// COUNTDOWN MILESTONES
 // ============================================================
 
 function updateMilestones(now) {
@@ -550,24 +889,31 @@ function updateMilestones(now) {
 
     milestones.forEach(milestone => {
 
-        const date = new Date(countdownTarget);
+        const date = new Date(
+            targetDate.getTime() -
+            milestone.days * 86400000
+        );
 
-        date.setDate(date.getDate() - milestone.days);
+        const difference = date - now;
 
-        const element = getElement(milestone.id);
+        let message;
 
-        if (!element) return;
+        if (difference <= 0) {
 
+            message = `Passed · ${formatDate(date)}`;
 
-        if (now >= date) {
+        } else if (difference <= 86400000) {
 
-            element.textContent = "Reached!";
+            message = `Today · ${formatDate(date)}`;
 
         } else {
 
-            element.textContent = formatDate(date);
+            message = formatDate(date);
 
         }
+
+        getElement(milestone.id).textContent =
+            message;
 
     });
 
@@ -575,16 +921,702 @@ function updateMilestones(now) {
 
 
 // ============================================================
-// UPDATE DASHBOARD
+// MANAGEMENT FEEDBACK
+// ============================================================
+
+function showMessage(message, type = "success") {
+
+    const element = getElement("managementMessage");
+
+    if (!element) return;
+
+    element.textContent = message;
+
+    element.className =
+        `management-message ${type}`;
+
+}
+
+
+// ============================================================
+// MANAGEMENT TABS
+// ============================================================
+
+function initialiseTabs() {
+
+    const tabs = document.querySelectorAll(
+        ".management-tab"
+    );
+
+    const panels = document.querySelectorAll(
+        ".management-content"
+    );
+
+
+    tabs.forEach(tab => {
+
+        tab.addEventListener("click", () => {
+
+            const selected = tab.dataset.tab;
+
+            tabs.forEach(item => {
+                item.classList.remove("active");
+            });
+
+            panels.forEach(panel => {
+                panel.classList.remove("active");
+            });
+
+            tab.classList.add("active");
+
+            getElement(
+                `${selected}Panel`
+            ).classList.add("active");
+
+            if (selected === "manage") {
+                renderManagedClasses();
+            }
+
+        });
+
+    });
+
+}
+
+
+// ============================================================
+// CLASS CATEGORY ICONS
+// ============================================================
+
+function getCategoryIcon(category, name) {
+
+    const lowerName = name.toLowerCase();
+
+    if (lowerName.includes("ballet")) {
+        return "fa-shoe-prints";
+    }
+
+    if (lowerName.includes("gym")) {
+        return "fa-heart-pulse";
+    }
+
+    if (lowerName.includes("condition")) {
+        return "fa-dumbbell";
+    }
+
+    if (lowerName.includes("repertoire")) {
+        return "fa-star";
+    }
+
+    if (lowerName.includes("contemporary")) {
+        return "fa-music";
+    }
+
+    if (lowerName.includes("character")) {
+        return "fa-person-walking";
+    }
+
+    if (lowerName.includes("school") || lowerName.includes("vcass")) {
+        return "fa-school";
+    }
+
+    switch (category) {
+
+        case "Dance":
+            return "fa-shoe-prints";
+
+        case "School":
+            return "fa-school";
+
+        case "Fitness":
+            return "fa-dumbbell";
+
+        case "Studies":
+            return "fa-book-open";
+
+        default:
+            return "fa-book";
+
+    }
+
+}
+
+
+// ============================================================
+// ADD WEEKLY CLASS
+// ============================================================
+
+function initialiseWeeklyForm() {
+
+    const form = getElement("weeklyClassForm");
+
+    form.addEventListener("submit", event => {
+
+        event.preventDefault();
+
+
+        const name = getElement(
+            "weeklyClassName"
+        ).value.trim();
+
+        const day = Number(
+            getElement("weeklyClassDay").value
+        );
+
+        const category = getElement(
+            "weeklyClassCategory"
+        ).value;
+
+        const start = getElement(
+            "weeklyClassStart"
+        ).value;
+
+        const end = getElement(
+            "weeklyClassEnd"
+        ).value;
+
+        const period = getElement(
+            "weeklyClassPeriod"
+        ).value;
+
+
+        // ====================================
+        // VALIDATION
+        // ====================================
+
+        if (!name || !start || !end) {
+
+            showMessage(
+                "Please complete all fields.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (start >= end) {
+
+            showMessage(
+                "The end time must be after the start time.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const existing = classes.find(item =>
+            item.name.toLowerCase() === name.toLowerCase()
+        );
+
+
+        // ====================================
+        // CREATE SESSION
+        // ====================================
+
+        const newSession = {
+            day,
+            start,
+            end,
+            period
+        };
+
+
+        if (existing) {
+
+            // Add another weekly session to an
+            // existing class instead of duplicating it.
+
+            const duplicate = existing.weekly.some(session =>
+
+                session.day === day &&
+                session.start === start &&
+                session.end === end &&
+                (session.period || "all") === period
+
+            );
+
+
+            if (duplicate) {
+
+                showMessage(
+                    "This weekly session already exists.",
+                    "error"
+                );
+
+                return;
+
+            }
+
+
+            existing.weekly.push(newSession);
+
+            showMessage(
+                `Added another weekly session to ${existing.name}.`
+            );
+
+        } else {
+
+            // Create a completely new class.
+
+            const newClass = {
+
+                id: createID(),
+
+                name,
+
+                category,
+
+                icon: getCategoryIcon(category, name),
+
+                weekly: [newSession],
+
+                extras: []
+
+            };
+
+
+            classes.push(newClass);
+
+
+            showMessage(
+                `${name} has been added to your dashboard.`
+            );
+
+        }
+
+
+        saveClasses();
+
+        refreshDashboard();
+
+        updateExtraClassDropdown();
+
+        renderManagedClasses();
+
+        form.reset();
+
+    });
+
+}
+
+
+// ============================================================
+// ADD ONE-TIME CLASS
+// ============================================================
+
+function initialiseExtraForm() {
+
+    const form = getElement("extraClassForm");
+
+    form.addEventListener("submit", event => {
+
+        event.preventDefault();
+
+
+        const classId = getElement(
+            "extraClassName"
+        ).value;
+
+        const date = getElement(
+            "extraClassDate"
+        ).value;
+
+        const start = getElement(
+            "extraClassStart"
+        ).value;
+
+        const end = getElement(
+            "extraClassEnd"
+        ).value;
+
+
+        const classInfo = classes.find(item =>
+            item.id === classId
+        );
+
+
+        if (!classInfo || !date || !start || !end) {
+
+            showMessage(
+                "Please complete all fields.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        if (start >= end) {
+
+            showMessage(
+                "The end time must be after the start time.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const selectedDate = new Date(
+            `${date}T12:00:00`
+        );
+
+
+        if (
+            selectedDate < firstPeriod ||
+            selectedDate > targetDate
+        ) {
+
+            showMessage(
+                "The class must be between September 8 and December 4, 2026.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        const duplicate = classInfo.extras.some(extra =>
+
+            extra.date === date &&
+            extra.start === start &&
+            extra.end === end
+
+        );
+
+
+        if (duplicate) {
+
+            showMessage(
+                "This one-time class already exists.",
+                "error"
+            );
+
+            return;
+
+        }
+
+
+        classInfo.extras.push({
+
+            id: createID(),
+
+            date,
+
+            start,
+
+            end
+
+        });
+
+
+        saveClasses();
+
+        refreshDashboard();
+
+        renderManagedClasses();
+
+        showMessage(
+            `One-time ${classInfo.name} class added successfully.`
+        );
+
+        form.reset();
+
+    });
+
+}
+
+
+// ============================================================
+// UPDATE ONE-TIME CLASS DROPDOWN
+// ============================================================
+
+function updateExtraClassDropdown() {
+
+    const select = getElement("extraClassName");
+
+    if (!select) return;
+
+    const previousValue = select.value;
+
+    select.innerHTML = "";
+
+
+    const placeholder = document.createElement("option");
+
+    placeholder.value = "";
+
+    placeholder.textContent = "Select a class";
+
+    select.appendChild(placeholder);
+
+
+    classes.forEach(classInfo => {
+
+        const option = document.createElement("option");
+
+        option.value = classInfo.id;
+
+        option.textContent = classInfo.name;
+
+        select.appendChild(option);
+
+    });
+
+
+    if (classes.some(item => item.id === previousValue)) {
+
+        select.value = previousValue;
+
+    }
+
+}
+
+
+// ============================================================
+// MANAGE EXISTING CLASSES
+// ============================================================
+
+function renderManagedClasses() {
+
+    const container = getElement(
+        "managedClassesList"
+    );
+
+    if (!container) return;
+
+    container.innerHTML = "";
+
+
+    if (classes.length === 0) {
+
+        const empty = document.createElement("p");
+
+        empty.textContent =
+            "You haven't added any classes yet.";
+
+        container.appendChild(empty);
+
+        return;
+
+    }
+
+
+    classes.forEach(classInfo => {
+
+        const wrapper = document.createElement("div");
+
+        wrapper.className = "managed-class";
+
+
+        // Class information
+
+        const information = document.createElement("div");
+
+        information.className = "managed-class-info";
+
+
+        const name = document.createElement("h4");
+
+        name.textContent = classInfo.name;
+
+
+        const category = document.createElement("p");
+
+        category.textContent =
+            `${classInfo.category} · ${classInfo.weekly.length} weekly sessions · ${classInfo.extras.length} extra sessions`;
+
+
+        information.append(
+            name,
+            category
+        );
+
+
+        // Remove class button
+
+        const removeButton = document.createElement("button");
+
+        removeButton.type = "button";
+
+        removeButton.className = "remove-class-button";
+
+        removeButton.innerHTML =
+            '<i class="fa-solid fa-trash"></i> Remove';
+
+
+        removeButton.addEventListener("click", () => {
+
+            const confirmed = window.confirm(
+                `Are you sure you want to remove "${classInfo.name}" and all its scheduled sessions?`
+            );
+
+            if (!confirmed) return;
+
+
+            classes = classes.filter(item =>
+                item.id !== classInfo.id
+            );
+
+
+            saveClasses();
+
+            refreshDashboard();
+
+            updateExtraClassDropdown();
+
+            renderManagedClasses();
+
+            showMessage(
+                `${classInfo.name} has been removed.`
+            );
+
+        });
+
+
+        wrapper.append(
+            information,
+            removeButton
+        );
+
+
+        // ====================================
+        // INDIVIDUAL ONE-TIME SESSIONS
+        // ====================================
+
+        if (classInfo.extras.length > 0) {
+
+            const extraContainer = document.createElement("div");
+
+            extraContainer.className = "managed-extras";
+
+
+            classInfo.extras.forEach(extra => {
+
+                const extraRow = document.createElement("div");
+
+                extraRow.className = "managed-extra-row";
+
+
+                const extraText = document.createElement("span");
+
+                const [year, month, day] =
+                    extra.date.split("-").map(Number);
+
+                const date = new Date(year, month - 1, day);
+
+                extraText.textContent =
+                    `${formatDate(date)} · ${formatTime(extra.start)} – ${formatTime(extra.end)}`;
+
+
+                const removeExtra = document.createElement("button");
+
+                removeExtra.type = "button";
+
+                removeExtra.className = "remove-extra-button";
+
+                removeExtra.title = "Remove this one-time class";
+
+                removeExtra.setAttribute(
+                    "aria-label",
+                    `Remove one-time ${classInfo.name} session`
+                );
+
+                removeExtra.innerHTML =
+                    '<i class="fa-solid fa-xmark"></i>';
+
+
+                removeExtra.addEventListener("click", () => {
+
+                    classInfo.extras =
+                        classInfo.extras.filter(item =>
+                            item.id !== extra.id
+                        );
+
+
+                    saveClasses();
+
+                    refreshDashboard();
+
+                    renderManagedClasses();
+
+                    showMessage(
+                        "One-time class removed."
+                    );
+
+                });
+
+
+                extraRow.append(
+                    extraText,
+                    removeExtra
+                );
+
+                extraContainer.appendChild(extraRow);
+
+            });
+
+
+            wrapper.appendChild(extraContainer);
+
+        }
+
+
+        container.appendChild(wrapper);
+
+    });
+
+}
+
+
+// ============================================================
+// SET DATE INPUT LIMITS
+// ============================================================
+
+function initialiseDateLimits() {
+
+    const dateInput = getElement("extraClassDate");
+
+    dateInput.min = "2026-09-08";
+
+    dateInput.max = "2026-12-04";
+
+}
+
+
+// ============================================================
+// REFRESH DASHBOARD
+// ============================================================
+
+function refreshDashboard() {
+
+    const now = new Date();
+
+    updateClassCounters(now);
+
+    updateNextClass(now);
+
+}
+
+
+// ============================================================
+// MAIN UPDATE FUNCTION
 // ============================================================
 
 function updateCountdownDashboard() {
 
     const now = new Date();
 
-    updateCurrentDate(now);
-
     updateCountdown(now);
+
+    updateCurrentDate(now);
 
     updateTermProgress(now);
 
@@ -606,15 +1638,22 @@ function initialiseDashboard() {
     console.log("Initialising Countdown Dashboard...");
 
 
-    // Generate all class sessions once.
+    // Set up the management system.
 
-    classSessions = generateClassSessions();
+    initialiseTabs();
+
+    initialiseWeeklyForm();
+
+    initialiseExtraForm();
+
+    initialiseDateLimits();
 
 
-    // Create class cards once.
-    // They will not be rebuilt every second.
+    // Populate class management.
 
-    createClassCards();
+    updateExtraClassDropdown();
+
+    renderManagedClasses();
 
 
     // Initial dashboard update.
@@ -622,13 +1661,15 @@ function initialiseDashboard() {
     updateCountdownDashboard();
 
 
-    // Refresh countdown and counters every second.
+    // Refresh every second.
 
-    setInterval(updateCountdownDashboard, 1000);
+    setInterval(
+        updateCountdownDashboard,
+        1000
+    );
 
 
     console.log("Countdown Dashboard ready.");
-    console.log("Version 2.1");
 
 }
 
@@ -637,7 +1678,4 @@ function initialiseDashboard() {
 // START APPLICATION
 // ============================================================
 
-document.addEventListener(
-    "DOMContentLoaded",
-    initialiseDashboard
-);
+initialiseDashboard();
