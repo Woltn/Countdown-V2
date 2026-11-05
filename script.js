@@ -2,7 +2,7 @@
 // THE COUNTDOWN — VERSION 2.1
 // ============================================================
 
-console.log("The Countdown - Version 2.676");
+console.log("The Countdown - Version 2.67");
 
 // ============================================================
 // CONFIGURATION
@@ -172,8 +172,8 @@ const classes = [
         icon: "fa-star",
 
         weekly: [
-            { day: 3, start: "16:30", end: "17:15" }
-            { day: 4, start: "10:45", end: "11:30" }
+            { day: 3, start: "16:30", end: "17:15" },
+            { day: 4, start: "10:45", end: "11:30" },
             { day: 5, start: "16:30", end: "17:15" }
         ],
 
